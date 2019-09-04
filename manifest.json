@@ -9,7 +9,8 @@
     {
       "matches": [
         "https://www.acmicpc.net/submit/*",
-        "https://swexpertacademy.com/main/solvingProblem/solvingProblem.do"
+        "https://swexpertacademy.com/main/solvingProblem/solvingProblem.do",
+        "http://www.jungol.co.kr/theme/jungol/submitpage.php?*"
       ],
       "js": [
         "inject.js"
@@ -18,7 +19,9 @@
     }
   ],
   "web_accessible_resources": [
-    "content.js"
+    "boj.js",
+    "swea.js",
+    "jungol.js"
   ],
   "manifest_version": 2
 }
