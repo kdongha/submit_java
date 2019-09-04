@@ -1,0 +1,24 @@
+{
+  "name": "submit_java",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "permissions": [
+    "https://www.acmicpc.net/submit/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.acmicpc.net/submit/*",
+        "https://swexpertacademy.com/main/solvingProblem/solvingProblem.do"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    "content.js"
+  ],
+  "manifest_version": 2
+}
