@@ -1,9 +1,12 @@
 let editor = document.querySelector('textarea')
 let lang = document.querySelector('input[name=plang]').value
 if (lang === 'Java') {
-    editor.onchange = function () {
-        editor.value = changeCode(editor.value, "Main")
-    }
+    editor.addEventListener('paste', function () {
+            setTimeout(function() {
+                let code = editor.value
+                editor.value = changeCode(code, "Main")
+            }, 100);
+    })
 }
 
 function changeCode(code, name) {
