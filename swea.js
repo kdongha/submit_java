@@ -26,7 +26,10 @@ function changeCode(code, name) {
             let arr = lines[line].split(' ');
             for (let idx = 0; idx < arr.length; idx++) {
                 if (checkClass) {
-                    arr[idx] = name;
+                    if (arr[idx][arr[idx].length - 1] === '{') {
+                        name += ' {'
+                    }
+                    arr[idx] = name
                     break
                 } else if (arr[idx] === 'class') {
                     checkClass = true
