@@ -1,17 +1,18 @@
-let editor = document.querySelector('textarea')
-let lang = document.querySelector('input[name=plang]').value
-if (lang === 'Java') {
-    editor.onchange = function () {
-        editor.value = changeCode(editor.value, "Main")
-    }
+let editor = document.querySelector('#editor');
+if (editor !== null) {
+    editor.addEventListener('paste', (e) => {
+            e.preventDefault();
+            e.target.value = changeCode(e.clipboardData.getData('text'), 'Main');
+        }
+    );
 }
 
 function changeCode(code, name) {
-    let rexPackage = new RegExp('package')
-    let rexClass = new RegExp('class .*')
-    let rexPsvm = new RegExp('public static void main')
+    let rexPackage = new RegExp('package');
+    let rexClass = new RegExp('class .*');
+    let rexPsvm = new RegExp('public static void main');
     let classStack = []
-    let lines = code.trim().split('\n')
+    let lines = code.trim().split('\n');
     if (rexPackage.test(lines[0])) {
         lines = lines.slice(1, lines.length)
     }
@@ -22,7 +23,7 @@ function changeCode(code, name) {
                 line--;
             }
             let checkClass = false
-            let arr = lines[line].split(' ')
+            let arr = lines[line].split(' ');
             for (let idx = 0; idx < arr.length; idx++) {
                 if (checkClass) {
                     arr[idx] = name
@@ -31,19 +32,19 @@ function changeCode(code, name) {
                     checkClass = true
                 }
             }
-            lines[line] = arr.join(' ')
+            lines[line] = arr.join(' ');
             break;
         }
-        let chars = lines[i].split('')
+        let chars = lines[i].split('');
         for (let char of chars) {
             if (char === '{') {
                 if (classStack.length === 0) {
-                    classStack.push({ 'line': i, 'count': 1 })
+                    classStack.push({'line': i, 'count': 1})
                 } else {
                     classStack[classStack.length - 1].count++
                 }
             } else if (char === '}') {
-                if (classStack[classStack.length - 1].count == 1) {
+                if (classStack[classStack.length - 1].count === 1) {
                     classStack.pop()
                 } else {
                     classStack[classStack.length - 1].count--
