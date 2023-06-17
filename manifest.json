@@ -1,14 +1,16 @@
 {
   "name": "submit_java",
-  "version": "1.0.3",
-  "description": "Build an Extension!",
-  "permissions": [
-    "https://www.acmicpc.net/submit/*"
+  "version": "1.0.5",
+  "description": "알고리즘 사이트에서 Java 언어의 포맷을 맞춰줍니다!",
+  "host_permissions": [
+    "https://www.acmicpc.net/submit/*",
+    "https://www.acmicpc.net/contest/submit/*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://www.acmicpc.net/submit/*",
+        "https://www.acmicpc.net/contest/submit/*",
         "https://swexpertacademy.com/main/solvingProblem/solvingProblem.do",
         "http://www.jungol.co.kr/theme/jungol/submitpage.php?*"
       ],
@@ -19,9 +21,18 @@
     }
   ],
   "web_accessible_resources": [
-    "boj.js",
-    "swea.js",
-    "jungol.js"
+    {
+      "resources" : ["boj.js"],
+      "matches" : ["https://www.acmicpc.net/*"]
+    },
+    {
+      "resources" : ["swea.js"],
+      "matches" : ["https://swexpertacademy.com/*"]
+    },
+    {
+      "resources" : ["jungol.js"],
+      "matches" : ["http://www.jungol.co.kr/*"]
+    }
   ],
-  "manifest_version": 2
+  "manifest_version": 3
 }

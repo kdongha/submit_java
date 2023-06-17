@@ -1,7 +1,7 @@
 let editor = document.querySelector('.CodeMirror');
 editor.addEventListener('paste', function () {
     let lang = document.querySelector('.chosen-single').innerText;
-    if (lang === 'Java') {
+    if(lang.includes('Java')){
         let codemirror = editor.CodeMirror;
         codemirror.setValue(changeCode(codemirror.getValue(), "Main"))
     }
